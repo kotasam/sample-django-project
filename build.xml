@@ -1,6 +1,8 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<project name="HelloWorld" default="main">
-    <target name="main" description="this is target main">
-        <echo message="Hello World" />
-    </target>
-</project>
+source venv/bin/activate; \
+	pip install -r requirements.txt; \
+	export CONFIG_PATH=configs/dev.cfg; \
+	python manage.py makemigrations; \
+	python manage.py migrate; \
+	rm -rf sample_django_project/static; \
+	python manage.py collectstatic; \
+	sudo systemctl restart venv
